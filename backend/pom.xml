@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<flyway.configFiles>/src/main/resources/application.properties</flyway.configFiles>
 	</properties>
 
 	<dependencies>
@@ -60,6 +61,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>6.4.0</version>
 			</plugin>
 		</plugins>
 	</build>

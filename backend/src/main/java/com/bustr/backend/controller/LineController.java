@@ -33,14 +33,14 @@ public class LineController {
   }
 
   @GetMapping("/lines/{code}")
-  public ResponseEntity<?> one(@PathVariable String id) {
-    Optional<Line> line = service.one(id);
+  public ResponseEntity<?> one(@PathVariable String code) {
+    Optional<Line> line = service.one(code);
 
     if (line.isPresent()) {
       return ResponseEntity.ok(line.get());
     }
 
-    throw new ResourceNotFoundException(id);
+    throw new ResourceNotFoundException(code);
   }
 
   @PostMapping("/lines")

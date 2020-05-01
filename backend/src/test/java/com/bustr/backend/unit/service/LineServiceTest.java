@@ -20,40 +20,34 @@ public class LineServiceTest {
 
   private final LineRepository repository = Mockito.mock(LineRepository.class);
   private LineService service;
+  private Line example;
 
   @BeforeEach
   private void init() {
     service = new LineService(repository);
+    example = new Line(
+        "0292",
+        "TERM. PIRITUBA/TERM. LAPA",
+        "TERM. PIRITUBA",
+        "TERM. LAPA",
+        "#FFFFFF"
+    );
   }
 
   @Test
   void all() {
-    Line line = new Line();
-    line.setCode("0292");
-    line.setName("TERM. PIRITUBA/TERM. LAPA");
-    line.setForward("TERM. PIRITUBA");
-    line.setBackward("TERM. LAPA");
-    line.setColor("#FFFFFF");
-
     List<Line> all = new ArrayList<>();
-    all.add(line);
+    all.add(example);
 
     Mockito.when(repository.findAll()).thenReturn(all);
 
     List<Line> lines = service.all();
-    assertThat(lines.get(0)).isEqualTo(line);
+    assertThat(lines.get(0)).isEqualTo(example);
   }
 
   @Test
   void one() {
-    Line line = new Line();
-    line.setCode("0292");
-    line.setName("TERM. PIRITUBA/TERM. LAPA");
-    line.setForward("TERM. PIRITUBA");
-    line.setBackward("TERM. LAPA");
-    line.setColor("#FFFFFF");
-
-    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(line));
+    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(example));
     Mockito.when(repository.findById("2932")).thenReturn(Optional.empty());
 
     Optional<Line> exists = service.one("0292");
@@ -65,16 +59,9 @@ public class LineServiceTest {
 
   @Test
   void create() {
-    Line line = new Line();
-    line.setCode("0292");
-    line.setName("TERM. PIRITUBA/TERM. LAPA");
-    line.setForward("TERM. PIRITUBA");
-    line.setBackward("TERM. LAPA");
-    line.setColor("#FFFFFF");
-
     Mockito.when(repository.save(any(Line.class))).then(returnsFirstArg());
 
-    Line created = service.create(line);
+    Line created = service.create(example);
 
     assertThat(created.getCode()).isEqualTo("0292");
     assertThat(created.getName()).isEqualTo("TERM. PIRITUBA/TERM. LAPA");
@@ -82,20 +69,15 @@ public class LineServiceTest {
 
   @Test
   void update() {
-    Line existent = new Line();
-    existent.setCode("0292");
-    existent.setName("TERM. PIRITUBA/TERM. LAPA");
-    existent.setForward("TERM. PIRITUBA");
-    existent.setBackward("TERM. LAPA");
-    existent.setColor("#FFFFFF");
+    Line line = new Line(
+        "",
+        "TERM. PIRITUBA/TERM. LAPA",
+        "TERM. PIRITUBA",
+        "TERM. LAPA",
+        "#000000"
+    );
 
-    Line line = new Line();
-    line.setName("TERM. PIRITUBA/TERM. LAPA");
-    line.setForward("TERM. PIRITUBA");
-    line.setBackward("TERM. LAPA");
-    line.setColor("#000000");
-
-    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(existent));
+    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(example));
     Mockito.when(repository.save(any(Line.class))).then(returnsFirstArg());
 
     Line updated = service.update("0292", line);
@@ -106,14 +88,7 @@ public class LineServiceTest {
 
   @Test
   void delete() {
-    Line existent = new Line();
-    existent.setCode("0292");
-    existent.setName("TERM. PIRITUBA/TERM. LAPA");
-    existent.setForward("TERM. PIRITUBA");
-    existent.setBackward("TERM. LAPA");
-    existent.setColor("#FFFFFF");
-
-    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(existent));
+    Mockito.when(repository.findById("0292")).thenReturn(Optional.of(example));
 
     Assertions.assertDoesNotThrow(() -> service.delete("0292"));
     Assertions.assertThrows(ResourceNotFoundException.class, () -> service.delete("2312"));

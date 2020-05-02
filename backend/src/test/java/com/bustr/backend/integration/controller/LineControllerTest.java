@@ -69,10 +69,12 @@ public class LineControllerTest {
   void one() throws Exception {
     when(service.one("0292")).thenReturn(Optional.of(example));
 
-    mockMvc.perform(get("/api/lines/{code}", "0292")
-        .contentType("application/json"))
+    mockMvc.perform(get("/api/lines/{code}", "0292"))
         .andExpect(status().isOk())
         .andExpect(content().json(mapper.writeValueAsString(example)));
+
+    mockMvc.perform(get("/api/lines/{code}", "0237"))
+        .andExpect(status().isBadRequest());
   }
 
   @Test

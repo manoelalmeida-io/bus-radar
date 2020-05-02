@@ -84,6 +84,7 @@ public class LineServiceTest {
 
     assertThat(updated.getCode()).isEqualTo("0292");
     assertThat(updated.getColor()).isEqualTo("#000000");
+    Assertions.assertThrows(ResourceNotFoundException.class, () -> service.update("0612", line));
   }
 
   @Test

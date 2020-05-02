@@ -1,10 +1,12 @@
 package com.bustr.backend.controller;
 
+import com.bustr.backend.dto.LineDto;
 import com.bustr.backend.exception.ResourceNotFoundException;
 import com.bustr.backend.model.Line;
 import com.bustr.backend.service.LineService;
 import java.util.List;
 import java.util.Optional;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LineController {
 
   private final LineService service;
+  private final ModelMapper mapper = new ModelMapper();
 
   public LineController(LineService repository) {
     this.service = repository;
@@ -44,14 +47,14 @@ public class LineController {
   }
 
   @PostMapping("/lines")
-  public ResponseEntity<?> create(@RequestBody Line line) {
-    Line created = service.create(line);
+  public ResponseEntity<?> create(@RequestBody LineDto line) {
+    Line created = service.create(mapper.map(line, Line.class));
     return ResponseEntity.status(HttpStatus.CREATED).body(created);
   }
 
   @PutMapping("/lines/{code}")
-  public ResponseEntity<?> update(@PathVariable String code, @RequestBody Line line) {
-    Line updated = service.update(code, line);
+  public ResponseEntity<?> update(@PathVariable String code, @RequestBody LineDto line) {
+    Line updated = service.update(code, mapper.map(line, Line.class));
     return ResponseEntity.ok(updated);
   }
 

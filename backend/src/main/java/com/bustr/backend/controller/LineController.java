@@ -30,13 +30,13 @@ public class LineController {
   }
 
   @GetMapping("/lines")
-  public ResponseEntity<?> all() {
+  public ResponseEntity<List<Line>> all() {
     List<Line> lines = service.all();
     return ResponseEntity.ok(lines);
   }
 
   @GetMapping("/lines/{code}")
-  public ResponseEntity<?> one(@PathVariable String code) {
+  public ResponseEntity<Line> one(@PathVariable String code) {
     Optional<Line> line = service.one(code);
 
     if (line.isPresent()) {
@@ -47,19 +47,19 @@ public class LineController {
   }
 
   @PostMapping("/lines")
-  public ResponseEntity<?> create(@RequestBody LineDto line) {
+  public ResponseEntity<Line> create(@RequestBody LineDto line) {
     Line created = service.create(mapper.map(line, Line.class));
     return ResponseEntity.status(HttpStatus.CREATED).body(created);
   }
 
   @PutMapping("/lines/{code}")
-  public ResponseEntity<?> update(@PathVariable String code, @RequestBody LineDto line) {
+  public ResponseEntity<Line> update(@PathVariable String code, @RequestBody LineDto line) {
     Line updated = service.update(code, mapper.map(line, Line.class));
     return ResponseEntity.ok(updated);
   }
 
   @DeleteMapping("/lines/{code}")
-  public ResponseEntity<?> delete(@PathVariable String code) {
+  public ResponseEntity<Void> delete(@PathVariable String code) {
     service.delete(code);
     return ResponseEntity.ok().build();
   }

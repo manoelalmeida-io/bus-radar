@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.data.geo.Point;
 
 public class BusServiceTest {
 
@@ -40,8 +39,8 @@ public class BusServiceTest {
     );
     lineConstraintFail = new Line("4834", "", "", "", "");
 
-    example = new Bus("923204", new Point(1, 1), line);
-    constraintFail = new Bus("723482", new Point(1, 2), lineConstraintFail);
+    example = new Bus("923204", 1.0, 1.0, line);
+    constraintFail = new Bus("723482", 1.0, 1.0, lineConstraintFail);
   }
 
   @Test
@@ -83,8 +82,8 @@ public class BusServiceTest {
 
   @Test
   void update() {
-    Bus bus = new Bus("", new Point(4, 3), line);
-    Bus exceptionBus = new Bus("", new Point(4, 3), lineConstraintFail);
+    Bus bus = new Bus("", 4.0, 3.0, line);
+    Bus exceptionBus = new Bus("", 4.0, 3.0, lineConstraintFail);
 
     Mockito.when(repository.save(any(Bus.class))).then(returnsFirstArg());
     Mockito.when(repository.findById("923204")).thenReturn(Optional.of(example));
@@ -95,7 +94,8 @@ public class BusServiceTest {
     Bus updated = service.update("923204", bus);
 
     assertThat(updated.getCode()).isEqualTo(example.getCode());
-    assertThat(updated.getLocation()).isEqualTo(bus.getLocation());
+    assertThat(updated.getCoordinateX()).isEqualTo(bus.getCoordinateX());
+    assertThat(updated.getCoordinateY()).isEqualTo(bus.getCoordinateY());
     Assertions.assertThrows(ResourceNotFoundException.class, () -> service.update("737342", bus));
     Assertions.assertThrows(ForeignKeyConstraintException.class, () -> service.update("923204", exceptionBus));
   }

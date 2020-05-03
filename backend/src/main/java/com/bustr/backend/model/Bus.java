@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.geo.Point;
 
 @Data
 @Entity
@@ -20,9 +19,10 @@ public class Bus {
 
   @Id
   private String code;
-
-  @Column(columnDefinition = "point")
-  private Point location;
+  @Column(name = "coordinate_x", columnDefinition = "numeric")
+  private Double coordinateX;
+  @Column(name = "coordinate_y", columnDefinition = "numeric")
+  private Double coordinateY;
 
   @ManyToOne
   @JoinColumn(name = "line", nullable = false)

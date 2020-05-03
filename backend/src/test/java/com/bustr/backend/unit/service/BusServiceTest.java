@@ -26,13 +26,11 @@ public class BusServiceTest {
   private final LineRepository lines = Mockito.mock(LineRepository.class);
   private BusService service;
   private Bus example, constraintFail;
-  private Line line;
+  private Line line, lineConstraintFail;
 
   @BeforeEach
   private void init() {
     service = new BusService(repository, lines);
-    example = new Bus("923204", new Point(1, 1),"0292");
-    constraintFail = new Bus("723482", new Point(1, 2), "4834");
     line = new Line(
         "0292",
         "TERM. PIRITUBA/TERM. LAPA",
@@ -40,6 +38,10 @@ public class BusServiceTest {
         "TERM. LAPA",
         "#FFFFFF"
     );
+    lineConstraintFail = new Line("4834", "", "", "", "");
+
+    example = new Bus("923204", new Point(1, 1), line);
+    constraintFail = new Bus("723482", new Point(1, 2), lineConstraintFail);
   }
 
   @Test
@@ -75,19 +77,19 @@ public class BusServiceTest {
     Bus created = service.create(example);
 
     assertThat(created.getCode()).isEqualTo("923204");
-    assertThat(created.getLine()).isEqualTo("0292");
+    assertThat(created.getLine()).isEqualTo(line);
     Assertions.assertThrows(ForeignKeyConstraintException.class, () -> service.create(constraintFail));
   }
 
   @Test
   void update() {
-    Bus bus = new Bus("", new Point(4, 3),"2039");
-    Bus exceptionBus = new Bus("", new Point(4, 3), "4834");
+    Bus bus = new Bus("", new Point(4, 3), line);
+    Bus exceptionBus = new Bus("", new Point(4, 3), lineConstraintFail);
 
     Mockito.when(repository.save(any(Bus.class))).then(returnsFirstArg());
     Mockito.when(repository.findById("923204")).thenReturn(Optional.of(example));
     Mockito.when(repository.findById("737342")).thenReturn(Optional.empty());
-    Mockito.when(lines.findById("2039")).thenReturn(Optional.of(line));
+    Mockito.when(lines.findById("0292")).thenReturn(Optional.of(line));
     Mockito.when(lines.findById("4834")).thenReturn(Optional.empty());
 
     Bus updated = service.update("923204", bus);

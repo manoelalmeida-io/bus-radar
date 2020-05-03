@@ -30,7 +30,7 @@ public class BusService {
   }
 
   public Bus create(Bus bus) {
-    Optional<Line> line = lines.findById(bus.getLine());
+    Optional<Line> line = lines.findById(bus.getLine().getCode());
 
     if (line.isPresent()) {
       return repository.save(bus);
@@ -43,7 +43,7 @@ public class BusService {
     Optional<Bus> existent = repository.findById(code);
 
     if (existent.isPresent()) {
-      Optional<Line> line = lines.findById(bus.getLine());
+      Optional<Line> line = lines.findById(bus.getLine().getCode());
 
       if (line.isPresent()) {
         bus.setCode(existent.get().getCode());

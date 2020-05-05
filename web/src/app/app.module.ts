@@ -8,6 +8,9 @@ import { FormLinesComponent } from './components/form-lines/form-lines.component
 import { TextInputComponent } from './shared/components/text-input/text-input.component';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { LineCardComponent } from './shared/components/line-card/line-card.component';
+import { BusesComponent } from './pages/buses/buses.component';
+import { FormBusesComponent } from './components/form-buses/form-buses.component';
+import { BusCardComponent } from './shared/components/bus-card/bus-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { LineCardComponent } from './shared/components/line-card/line-card.compo
     FormLinesComponent,
     TextInputComponent,
     ButtonComponent,
-    LineCardComponent
+    LineCardComponent,
+    BusesComponent,
+    FormBusesComponent,
+    BusCardComponent
   ],
   imports: [
     BrowserModule,

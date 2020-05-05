@@ -1,0 +1,20 @@
+.bus-card-container {
+  display: flex;
+  background: #FFFFFF;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-left {
+  display: flex;
+}
+
+.chip {
+  background: #F91D1D;
+  color: #FFFFFF;
+  margin-left: 18px;
+  border-radius: 150px;
+  padding: 4px 8px;
+  font-size: 13px;
+}

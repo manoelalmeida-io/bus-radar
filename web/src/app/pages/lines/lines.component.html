@@ -5,7 +5,9 @@
     </div>
     <div class="container-right">
       <h3>Buscar Linha</h3>
-      <app-text-input name="search" placeholder=""></app-text-input>
+      <form [formGroup]="formSearch" *ngIf="formSearch">
+        <app-text-input [formGroup]="formSearch" name="search" placeholder=""></app-text-input>
+      </form>
       <div class="lines">
         <app-line-card></app-line-card>
         <app-line-card></app-line-card>

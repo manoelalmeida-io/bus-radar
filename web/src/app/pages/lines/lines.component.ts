@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-lines',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinesComponent implements OnInit {
 
-  constructor() { }
+  formSearch: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formSearch = this.formBuilder.group({
+      search: ['']
+    });
   }
 
 }

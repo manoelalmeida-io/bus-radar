@@ -10,9 +10,19 @@ const url = 'http://localhost:8080/api/lines';
 })
 export class LinesService {
 
+  lines: Array<Line> = [];
+
   constructor(private http: HttpClient) { }
 
-  save(line: Line): Observable<Line> {
-    return this.http.post<Line>(url, line);
+  list(): void {
+    this.http.get<Array<Line>>(url).subscribe((lines: Array<Line>) => {
+      this.lines = lines;
+    });
+  }
+
+  save(line: Line): void {
+    this.http.post<Line>(url, line).subscribe((line: Line) => {
+      this.lines.push(line);
+    });
   }
 }

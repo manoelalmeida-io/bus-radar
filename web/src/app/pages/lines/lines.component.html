@@ -9,10 +9,9 @@
         <app-text-input [formGroup]="formSearch" name="search" placeholder=""></app-text-input>
       </form>
       <div class="lines">
-        <app-line-card></app-line-card>
-        <app-line-card></app-line-card>
-        <app-line-card></app-line-card>
-        <app-line-card></app-line-card>
+        <div *ngFor="let line of search()">
+          <app-line-card [line]="line"></app-line-card>
+        </div>
       </div>
     </div>
   </div>

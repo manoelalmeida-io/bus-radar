@@ -94,8 +94,8 @@ public class BusServiceTest {
     Bus updated = service.update("923204", bus);
 
     assertThat(updated.getCode()).isEqualTo(example.getCode());
-    assertThat(updated.getCoordinateX()).isEqualTo(bus.getCoordinateX());
-    assertThat(updated.getCoordinateY()).isEqualTo(bus.getCoordinateY());
+    assertThat(updated.getLatitude()).isEqualTo(bus.getLatitude());
+    assertThat(updated.getLongitude()).isEqualTo(bus.getLongitude());
     Assertions.assertThrows(ResourceNotFoundException.class, () -> service.update("737342", bus));
     Assertions.assertThrows(ForeignKeyConstraintException.class, () -> service.update("923204", exceptionBus));
   }

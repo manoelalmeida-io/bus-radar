@@ -9,7 +9,7 @@ import lombok.Setter;
 public class BusDto {
 
   private String code;
-  private Double coordinateX;
-  private Double coordinateY;
+  private Double latitude;
+  private Double longitude;
   private Line line;
 }

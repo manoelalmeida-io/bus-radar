@@ -21,8 +21,8 @@ export class LinesService {
   }
 
   save(line: Line): void {
-    this.http.post<Line>(url, line).subscribe((line: Line) => {
-      this.lines.push(line);
+    this.http.post<Line>(url, line).subscribe((saved: Line) => {
+      this.lines.push(saved);
     });
   }
 }

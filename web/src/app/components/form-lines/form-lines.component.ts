@@ -12,7 +12,8 @@ export class FormLinesComponent implements OnInit {
 
   formLines: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private service: LinesService) { }
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class FormLinesComponent implements OnInit {
       forward: null,
       backward: null,
       color: null
-    }
+    };
   }
 
   onSubmit() {

@@ -13,9 +13,10 @@ import { Line } from 'src/app/shared/models/line';
 export class LinesComponent implements OnInit {
 
   formSearch: FormGroup;
-  filterText: string = '';
+  filterText = '';
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     public service: LinesService) { }
 
   ngOnInit(): void {
@@ -46,9 +47,9 @@ export class LinesComponent implements OnInit {
   }
 
   filter(line: Line) {
-    let filterText = this.filterText.toLowerCase();
-    let lineName = line.name.toLowerCase();
-    let lineCode = line.code.toLowerCase();
+    const filterText = this.filterText.toLowerCase();
+    const lineName = line.name.toLowerCase();
+    const lineCode = line.code.toLowerCase();
 
     return lineName.includes(filterText) || lineCode.includes(filterText);
   }

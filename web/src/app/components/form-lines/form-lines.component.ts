@@ -40,6 +40,6 @@ export class FormLinesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.formLines.value).subscribe();
+    this.service.save(this.formLines.value);
   }
 }

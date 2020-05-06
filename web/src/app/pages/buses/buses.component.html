@@ -5,13 +5,14 @@
     </div>
     <div class="container-right">
       <h3>Buscar Ônibus</h3>
-      <app-text-input name="search" placeholder=""></app-text-input>
+      <form [formGroup]="formSearch">
+        <app-text-input [formGroup]="formSearch" name="search" placeholder=""></app-text-input>
+      </form>
       <p>Todos os onibus</p>
       <div class="buses">
-        <app-bus-card></app-bus-card>
-        <app-bus-card></app-bus-card>
-        <app-bus-card></app-bus-card>
-        <app-bus-card></app-bus-card>
+        <div *ngFor="let bus of search()">
+          <app-bus-card [bus]="bus"></app-bus-card>
+        </div>
       </div>
     </div>
   </div>

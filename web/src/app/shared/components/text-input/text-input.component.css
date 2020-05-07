@@ -6,3 +6,8 @@ input {
   border-radius: 2px;
   width: 100%;
 }
+
+.input-error {
+  font-size: 10px;
+  color: crimson;
+}

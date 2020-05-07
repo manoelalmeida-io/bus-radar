@@ -4,4 +4,8 @@
     [name]="name" 
     [formControlName]="name" 
     [placeholder]="placeholder">
+
+  <div *ngIf="(formControl.touched || formControl.dirty) && formControl.errors && formControl.errors.required">
+    <p class="input-error">Este campo deve ser preechido</p>
+  </div>
 </div>

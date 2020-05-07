@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Bus } from 'src/app/shared/models/bus';
 import { BusesService } from 'src/app/core/buses.service';
 
@@ -22,10 +22,10 @@ export class FormBusesComponent implements OnInit {
 
   createForm(bus: Bus) {
     this.formBuses = this.formBuilder.group({
-      code: [bus.code],
-      latitude: [bus.latitude],
-      longitude: [bus.longitude],
-      line: [bus.line]
+      code: [bus.code, [Validators.required]],
+      latitude: [bus.latitude, [Validators.required]],
+      longitude: [bus.longitude, [Validators.required]],
+      line: [bus.line, [Validators.required]]
     });
   }
 

@@ -39,9 +39,13 @@ export class FormBusesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formBuses.markAllAsTouched();
+
     const bus: Bus = this.formBuses.value;
     bus.line = { code: bus.line };
 
-    this.service.save(bus);
+    if (!this.formBuses.invalid) {
+      this.service.save(bus);
+    }
   }
 }

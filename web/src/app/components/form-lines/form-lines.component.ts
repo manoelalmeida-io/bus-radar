@@ -41,6 +41,10 @@ export class FormLinesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.formLines.value);
+    this.formLines.markAllAsTouched();
+
+    if (!this.formLines.invalid) {
+      this.service.save(this.formLines.value);
+    }
   }
 }

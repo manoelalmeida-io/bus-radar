@@ -1,5 +1,6 @@
 package com.bustr.backend.service;
 
+import com.bustr.backend.exception.PrimaryKeyConstraintException;
 import com.bustr.backend.exception.ResourceNotFoundException;
 import com.bustr.backend.model.Line;
 import com.bustr.backend.repository.LineRepository;
@@ -25,7 +26,11 @@ public class LineService {
   }
 
   public Line create(Line line) {
-    return repository.save(line);
+    if (line.getCode() != null && !line.getCode().isBlank()) {
+      return repository.save(line);
+    }
+
+    throw new PrimaryKeyConstraintException();
   }
 
   public Line update(String code, Line line) {

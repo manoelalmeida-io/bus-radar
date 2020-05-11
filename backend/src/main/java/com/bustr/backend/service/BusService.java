@@ -1,6 +1,7 @@
 package com.bustr.backend.service;
 
 import com.bustr.backend.exception.ForeignKeyConstraintException;
+import com.bustr.backend.exception.PrimaryKeyConstraintException;
 import com.bustr.backend.exception.ResourceNotFoundException;
 import com.bustr.backend.model.Bus;
 import com.bustr.backend.model.Line;
@@ -33,7 +34,10 @@ public class BusService {
     Optional<Line> line = lines.findById(bus.getLine().getCode());
 
     if (line.isPresent()) {
-      return repository.save(bus);
+      if (bus.getCode() != null && !bus.getCode().isBlank()) {
+        return repository.save(bus);
+      }
+      throw new PrimaryKeyConstraintException();
     }
 
     throw new ForeignKeyConstraintException();

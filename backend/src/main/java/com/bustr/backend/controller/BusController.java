@@ -6,6 +6,7 @@ import com.bustr.backend.model.Bus;
 import com.bustr.backend.service.BusService;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +48,13 @@ public class BusController {
   }
 
   @PostMapping("/buses")
-  public ResponseEntity<Bus> create(@RequestBody BusDto bus) {
+  public ResponseEntity<Bus> create(@Valid @RequestBody BusDto bus) {
     Bus created = service.create(mapper.map(bus, Bus.class));
     return ResponseEntity.status(HttpStatus.CREATED).body(created);
   }
 
   @PutMapping("/buses/{code}")
-  public ResponseEntity<Bus> update(@PathVariable String code, @RequestBody BusDto bus) {
+  public ResponseEntity<Bus> update(@PathVariable String code, @Valid @RequestBody BusDto bus) {
     Bus updated = service.update(code, mapper.map(bus, Bus.class));
     return ResponseEntity.ok(updated);
   }

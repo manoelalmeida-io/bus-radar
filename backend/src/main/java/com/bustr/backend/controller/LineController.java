@@ -6,6 +6,7 @@ import com.bustr.backend.model.Line;
 import com.bustr.backend.service.LineService;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +48,13 @@ public class LineController {
   }
 
   @PostMapping("/lines")
-  public ResponseEntity<Line> create(@RequestBody LineDto line) {
+  public ResponseEntity<Line> create(@Valid @RequestBody LineDto line) {
     Line created = service.create(mapper.map(line, Line.class));
     return ResponseEntity.status(HttpStatus.CREATED).body(created);
   }
 
   @PutMapping("/lines/{code}")
-  public ResponseEntity<Line> update(@PathVariable String code, @RequestBody LineDto line) {
+  public ResponseEntity<Line> update(@PathVariable String code, @Valid @RequestBody LineDto line) {
     Line updated = service.update(code, mapper.map(line, Line.class));
     return ResponseEntity.ok(updated);
   }

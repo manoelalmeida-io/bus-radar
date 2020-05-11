@@ -1,5 +1,6 @@
 package com.bustr.backend.unit.service;
 
+import com.bustr.backend.exception.PrimaryKeyConstraintException;
 import com.bustr.backend.exception.ResourceNotFoundException;
 import com.bustr.backend.model.Line;
 import com.bustr.backend.repository.LineRepository;
@@ -59,12 +60,28 @@ public class LineServiceTest {
 
   @Test
   void create() {
+    Line empty = new Line(
+        "",
+        "TERM. PIRITUBA/TERM. LAPA",
+        "TERM. PIRITUBA",
+        "TERM. LAPA",
+        "#FFFFFF"
+    );
+
+    Line nullCode = new Line();
+    nullCode.setName("TERM. PIRITUBA/TERM. LAPA");
+    nullCode.setForward("TERM. PIRITUBA");
+    nullCode.setBackward("TERM. LAPA");
+    nullCode.setColor("#FFFFFF");
+
     Mockito.when(repository.save(any(Line.class))).then(returnsFirstArg());
 
     Line created = service.create(example);
 
     assertThat(created.getCode()).isEqualTo("0292");
     assertThat(created.getName()).isEqualTo("TERM. PIRITUBA/TERM. LAPA");
+    Assertions.assertThrows(PrimaryKeyConstraintException.class, () -> service.create(empty));
+    Assertions.assertThrows(PrimaryKeyConstraintException.class, () -> service.create(nullCode));
   }
 
   @Test

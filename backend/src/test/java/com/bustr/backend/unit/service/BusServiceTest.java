@@ -1,10 +1,12 @@
 package com.bustr.backend.unit.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 
 import com.bustr.backend.exception.ForeignKeyConstraintException;
+import com.bustr.backend.exception.PrimaryKeyConstraintException;
 import com.bustr.backend.exception.ResourceNotFoundException;
 import com.bustr.backend.model.Bus;
 import com.bustr.backend.model.Line;
@@ -69,6 +71,13 @@ public class BusServiceTest {
 
   @Test
   void create() {
+    Bus invalidCode = new Bus("", 1.0, 1.0, line);
+
+    Bus nullCode = new Bus();
+    nullCode.setLatitude(0.0);
+    nullCode.setLongitude(0.0);
+    nullCode.setLine(line);
+
     Mockito.when(repository.save(any(Bus.class))).then(returnsFirstArg());
     Mockito.when(lines.findById("0292")).thenReturn(Optional.of(line));
     Mockito.when(lines.findById("4834")).thenReturn(Optional.empty());
@@ -78,6 +87,8 @@ public class BusServiceTest {
     assertThat(created.getCode()).isEqualTo("923204");
     assertThat(created.getLine()).isEqualTo(line);
     Assertions.assertThrows(ForeignKeyConstraintException.class, () -> service.create(constraintFail));
+    Assertions.assertThrows(PrimaryKeyConstraintException.class, () -> service.create(invalidCode));
+    Assertions.assertThrows(PrimaryKeyConstraintException.class, () -> service.create(nullCode));
   }
 
   @Test

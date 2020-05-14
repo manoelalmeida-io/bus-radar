@@ -21,7 +21,7 @@ export class StopsService {
 
   save(stop: Stop): void {
     this.http.post<Stop>(url, stop).subscribe((saved: Stop) => {
-      console.log(saved);
+      this.stops.push(saved);
     });
   }
 }

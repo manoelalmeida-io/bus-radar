@@ -3,9 +3,12 @@
   <form autocomplete="off" [formGroup]="formStops" (ngSubmit)="onSubmit()">
     <app-text-input name="code" [formGroup]="formStops" placeholder="Código"></app-text-input>
     <div class="directions-container">
-      <app-text-input name="latitude" [formGroup]="formStops" placeholder="latitude"></app-text-input>
-      <app-text-input name="longitude" [formGroup]="formStops" placeholder="longitude"></app-text-input>
+      <app-text-input name="latitude" [formGroup]="formStops" placeholder="Latitude"></app-text-input>
+      <app-text-input name="longitude" [formGroup]="formStops" placeholder="Longitude"></app-text-input>
     </div>
+    <app-text-input name="street" [formGroup]="formStops" placeholder="Rua"></app-text-input>
+    <app-text-input name="state" [formGroup]="formStops" placeholder="Estado"></app-text-input>
+    <app-text-input name="city" [formGroup]="formStops" placeholder="Cidade"></app-text-input>
     <app-button text="cadastrar"></app-button>
   </form>
 </div>

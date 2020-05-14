@@ -13,6 +13,9 @@ import { BusesComponent } from './pages/buses/buses.component';
 import { FormBusesComponent } from './components/form-buses/form-buses.component';
 import { BusCardComponent } from './shared/components/bus-card/bus-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StopsComponent } from './pages/stops/stops.component';
+import { FormStopsComponent } from './components/form-stops/form-stops.component';
+import { StopCardComponent } from './shared/components/stop-card/stop-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     LineCardComponent,
     BusesComponent,
     FormBusesComponent,
-    BusCardComponent
+    BusCardComponent,
+    StopsComponent,
+    FormStopsComponent,
+    StopCardComponent
   ],
   imports: [
     BrowserModule,

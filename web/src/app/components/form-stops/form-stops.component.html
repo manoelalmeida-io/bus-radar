@@ -1,0 +1,11 @@
+<div class="form-container">
+  <h2>Novo Ponto</h2>
+  <form autocomplete="off" [formGroup]="formStops" (ngSubmit)="onSubmit()">
+    <app-text-input name="code" [formGroup]="formStops" placeholder="Código"></app-text-input>
+    <div class="directions-container">
+      <app-text-input name="latitude" [formGroup]="formStops" placeholder="latitude"></app-text-input>
+      <app-text-input name="longitude" [formGroup]="formStops" placeholder="longitude"></app-text-input>
+    </div>
+    <app-button text="cadastrar"></app-button>
+  </form>
+</div>

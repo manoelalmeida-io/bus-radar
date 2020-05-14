@@ -1,0 +1,11 @@
+.stop-card-container {
+  display: flex;
+  background: #FFFFFF;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-left {
+  display: flex;
+}

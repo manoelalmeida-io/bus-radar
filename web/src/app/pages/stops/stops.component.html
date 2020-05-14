@@ -1,17 +1,17 @@
-<div class="buses-container">
+<div class="stops-container">
   <div class="content">
     <div class="container-left">
-      <app-form-buses></app-form-buses>
+      <app-form-stops></app-form-stops>
     </div>
     <div class="container-right">
-      <h3>Buscar Ônibus</h3>
+      <h3>Buscar Pontos</h3>
       <form [formGroup]="formSearch">
         <app-text-input [formGroup]="formSearch" name="search" placeholder=""></app-text-input>
       </form>
-      <p>Todos os onibus</p>
-      <div class="buses">
-        <div *ngFor="let bus of search()">
-          <app-bus-card [bus]="bus"></app-bus-card>
+      <p>Todos os pontos</p>
+      <div class="stops">
+        <div *ngFor="let stop of search()">
+          <app-stop-card [stop]="stop"></app-stop-card>
         </div>
       </div>
     </div>

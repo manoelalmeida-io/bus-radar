@@ -1,4 +1,4 @@
-.buses-container {
+.stops-container {
   display: flex;
   max-width: 1050px;
   margin: auto;
@@ -26,7 +26,7 @@ p {
   margin-top: 28px;
 }
 
-.buses {
+.stops {
   display: grid;
   gap: 4px;
   margin-top: 8px;

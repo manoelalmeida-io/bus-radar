@@ -1,0 +1,1 @@
+ALTER TABLE tb_stop ADD address VARCHAR(255);

@@ -21,4 +21,5 @@ public class Stop {
   private Double latitude;
   @Column(columnDefinition = "numeric")
   private Double longitude;
+  private String address;
 }

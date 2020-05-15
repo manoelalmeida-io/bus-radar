@@ -25,7 +25,7 @@ public class StopServiceTest {
   @BeforeEach
   private void init() {
     service = new StopService(repository);
-    example = new Stop("123", 1.0, 1.0);
+    example = new Stop("123", 1.0, 1.0, "Term. Pirituba");
   }
 
   @Test
@@ -52,7 +52,7 @@ public class StopServiceTest {
 
   @Test
   void create() {
-    Stop emptyCode = new Stop("", 1.0, 1.0);
+    Stop emptyCode = new Stop("", 1.0, 1.0, "Term. Pirituba");
     Stop blankCode = new Stop();
     blankCode.setLatitude(1.0);
     blankCode.setLongitude(1.0);
@@ -68,7 +68,7 @@ public class StopServiceTest {
 
   @Test
   void update() {
-    Stop stop = new Stop("", 2.0, 2.0);
+    Stop stop = new Stop("", 2.0, 2.0, "Term. Pirituba");
 
     Mockito.when(repository.findById("123")).thenReturn(Optional.of(example));
     Mockito.when(repository.save(any(Stop.class))).then(returnsFirstArg());

@@ -46,7 +46,7 @@ public class StopControllerTest {
 
   @BeforeEach
   private void init() {
-    example = new Stop("332", 1.0, 1.0);
+    example = new Stop("332", 1.0, 1.0, "Term. Pirituba");
   }
 
   @Test
@@ -83,7 +83,7 @@ public class StopControllerTest {
 
   @Test
   void update() throws Exception {
-    example = new Stop("", 2.0, 2.0);
+    example = new Stop("", 2.0, 2.0, "Term. Pirituba");
 
     when(service.update(eq("332"), any(Stop.class))).then(returnsLastArg());
 

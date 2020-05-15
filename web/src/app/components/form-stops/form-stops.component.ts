@@ -37,9 +37,7 @@ export class FormStopsComponent implements OnInit {
           this.longitude = longitude;
 
           this.geoService.geolocationToAddress(latitude, longitude).subscribe(response => {
-            this.formStops.get('street').setValue(response.staddress);
-            this.formStops.get('state').setValue(response.state);
-            this.formStops.get('city').setValue(response.city);
+            this.formStops.get('address').setValue(response.staddress);
           });
         }
       });
@@ -50,9 +48,7 @@ export class FormStopsComponent implements OnInit {
       code: [stop.code, [Validators.required]],
       latitude: [stop.latitude, [Validators.required]],
       longitude: [stop.longitude, [Validators.required]],
-      street: [],
-      state: [],
-      city: []
+      address: [stop.address, [Validators.required]],
     });
   }
 
@@ -60,7 +56,8 @@ export class FormStopsComponent implements OnInit {
     return {
       code: null,
       latitude: null,
-      longitude: null
+      longitude: null,
+      address: null
     };
   }
 

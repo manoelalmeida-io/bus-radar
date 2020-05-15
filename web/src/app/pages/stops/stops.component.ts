@@ -41,10 +41,11 @@ export class StopsComponent implements OnInit {
     return this.service.stops;
   }
 
-  filter(bus: Stop) {
+  filter(stop: Stop) {
     const filterText = this.filterText.toLowerCase();
-    const code = bus.code.toLowerCase();
+    const code = stop.code.toLowerCase();
+    const address = stop.address.toLowerCase();
 
-    return code.includes(filterText);
+    return code.includes(filterText) || address.includes(filterText);
   }
 }

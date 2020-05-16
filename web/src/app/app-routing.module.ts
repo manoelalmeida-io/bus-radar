@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LinesComponent } from './pages/lines/lines.component';
 import { BusesComponent } from './pages/buses/buses.component';
 import { StopsComponent } from './pages/stops/stops.component';
+import { LineRouteComponent } from './pages/line-route/line-route.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,16 @@ const routes: Routes = [
   },
   {
     path: 'lines',
-    component: LinesComponent
+    children: [
+      {
+        path: '',
+        component: LinesComponent
+      },
+      {
+        path: ':id/route',
+        component: LineRouteComponent
+      }
+    ]
   },
   {
     path: 'buses',

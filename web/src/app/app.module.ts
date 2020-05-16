@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StopsComponent } from './pages/stops/stops.component';
 import { FormStopsComponent } from './components/form-stops/form-stops.component';
 import { StopCardComponent } from './shared/components/stop-card/stop-card.component';
+import { LineRouteComponent } from './pages/line-route/line-route.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StopCardComponent } from './shared/components/stop-card/stop-card.compo
     BusCardComponent,
     StopsComponent,
     FormStopsComponent,
-    StopCardComponent
+    StopCardComponent,
+    LineRouteComponent
   ],
   imports: [
     BrowserModule,

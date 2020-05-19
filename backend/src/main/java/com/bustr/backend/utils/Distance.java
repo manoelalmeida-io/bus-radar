@@ -2,7 +2,9 @@ package com.bustr.backend.utils;
 
 import org.springframework.data.geo.Point;
 
-public class Distance {
+public final class Distance {
+
+  private Distance() {}
 
   public static Double distanceBetweenCoordinates(Point ref, Point other) {
     Point refRadians = new Point(Math.toRadians(ref.getX()), Math.toRadians(ref.getY()));

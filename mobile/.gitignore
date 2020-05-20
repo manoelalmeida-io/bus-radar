@@ -31,3 +31,6 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Mapbox API key
+src/config/auth.json

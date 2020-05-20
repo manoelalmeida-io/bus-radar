@@ -1,7 +1,17 @@
 <ActionBar>
-    <Label text="Home"></Label>
+	<Label text="BusRadar"></Label>
 </ActionBar>
 
 <GridLayout>
-    <!-- Add your page content here -->
+	<Mapbox
+		#map
+		[accessToken]="mapboxKey"
+		mapStyle="streets"
+		latitude="-23.418358"
+		longitude="-46.717561"
+		hideCompass="false"
+		zoomLevel="15"
+		showUserLocation="true"
+		(mapReady)="onMapReady($event)">
+	</Mapbox>
 </GridLayout>

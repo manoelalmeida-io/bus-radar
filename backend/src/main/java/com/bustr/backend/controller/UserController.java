@@ -5,7 +5,7 @@ import com.bustr.backend.model.Bus;
 import com.bustr.backend.service.UserService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +20,7 @@ public class UserController {
     this.service = service;
   }
 
-  @GetMapping("/user/nearby")
+  @PostMapping("/user/nearby")
   public ResponseEntity<List<Bus>> nearby(@RequestBody UserDto user) {
     List<Bus> buses = service.nearby(user);
     return ResponseEntity.ok(buses);

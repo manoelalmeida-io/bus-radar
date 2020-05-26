@@ -2,7 +2,7 @@ package com.bustr.backend.integration.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -10,7 +10,6 @@ import com.bustr.backend.controller.UserController;
 import com.bustr.backend.dto.UserDto;
 import com.bustr.backend.model.Bus;
 import com.bustr.backend.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,7 +51,7 @@ public class UserControllerTest {
   void nearby() throws Exception {
     when(service.nearby(any(UserDto.class))).thenReturn(List.of(near));
 
-    mockMvc.perform(get("/api/user/nearby")
+    mockMvc.perform(post("/api/user/nearby")
         .contentType("application/json")
         .content(mapper.writeValueAsString(user)))
         .andExpect(status().isOk())

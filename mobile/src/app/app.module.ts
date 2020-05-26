@@ -5,6 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
+import { HttpClientModule } from "@angular/common/http";
 
 registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView);
 
@@ -14,7 +15,8 @@ registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView);
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule
     ],
     declarations: [
         AppComponent
